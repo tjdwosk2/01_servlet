@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*  보내는 방법  */
+function send_go(f) {
+	// html required 가 적용 되지않아서 별도로 만들어서 처리 
+	var name = f.name.value;
+	var age = f.age.value;
+	
+	if (name =='') {
+		alert("이름을 입력하세요")
+		f.name.focus(); //커서 거기로 갖다놓으라!
+		return;     // 자기를 호출한곳으로 되돌아가니까 밑으로 간다 커서도!
+	}
+	if (age == '') {
+		alert("나이을 입력하세요")
+		f.age.focus(); //커서 거기로 갖다놓으라!
+		return;     // 자기를 호출한곳으로 되돌아가니까 밑으로 간다 커서도!
+	}
+	f.action = "/01_servlet/Ex06";
+	f.submit();
+	
+}
+
+</script>
+
+</head>
+<body>
+
+
+				<h2> HTML 를 활용한 서버(서블릿)에게 정보 보내기 </h2>
+				<!-- 절대 주소로 보내줘야함 자체가 다르기 때문에  -->
+				<form action="/01_servlet/Ex06" method="get">
+						<p> 이름 <input type="text" name="name" required> </p> 
+						<p> 나이 <input type="number" name="age" min="10" required> </p> 
+						<!--  숫자는 조건을 줄수있따 -->
+					<input type="submit" value="서블릿에게 보내기">
+					<input type="reset" value="취소">
+					
+				</form>
+
+				<h2> HTML 를 활용한 서버(서블릿)에게 정보 보내기 </h2>
+				<!-- 절대 주소로 보내줘야함 자체가 다르기 때문에  -->
+				<form action="/01_servlet/Ex06" method="post">
+						<p> 이름 <input type="text" name="name" required> </p> 
+						<p> 나이 <input type="number" name="age" min="10" required> </p> 
+						<!--  숫자는 조건을 줄수있따 -->
+					<input type="submit" value="서블릿에게 보내기">
+					<input type="reset" value="취소">
+					
+				</form>
+				
+				<hr>
+				<h2> JavaScript를 활용한 서버 (서블릿) 에게 정보 보내기</h2>
+		
+				<form method="post"> 
+						<p> 이름 <input type="text" name="name" > </p> 
+						<p> 나이 <input type="number" name="age" min="10" > </p> 
+						<!--  숫자는 조건을 줄수있따 -->
+					<input type="reset" value="취소">
+					<!-- onXXXX => 자바크립트 함수 호출  -->
+					<input type="button" value="보내기" onclick="send_go(this.form)">
+					
+				</form>
+				
+				
+</body>
+</html>

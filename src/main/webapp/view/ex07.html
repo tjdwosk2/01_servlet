@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>계산기 만들기</title>
+<style type="text/css">
+	fieldset {
+		width: 300px
+}
+</style>
+<script type="text/javascript">
+  //functiomn  왔으니 메서드 안에서 작성해주기
+  // 변수 s1 은 f.s1 value 값이다!
+  // 값이 들어가지 않으면 경고창이 뜬다 .
+  
+	function send_go(f) {
+		var s1 = f.s1.value;
+		if (s1 == '') {
+			alert("수1를 입력하세요")
+			f.s1.focus();
+			return;
+		}
+		var s2 = f.s2.value;
+		if (s2 == '') {
+			alert("수2를 입력하세요")
+			f.s2.focus();
+			return;
+		}
+		
+		var op = f.op.value;
+		if (op == '') {
+			alert("연산자를 선택하세요");
+			return;
+		}
+		// form에 action을 작성하면 생략할 수 있다.
+		f.action="/01_servlet/Ex07";
+		f.submit();
+		
+	}
+
+</script>
+</head>
+<body>
+<!-- HTML  -->
+<form action="/01_servlet/Ex07" method="get">
+	<fieldset>
+		<legend> 계산기 </legend>
+		<p> 수1 : <input type="number" name="s1" required> </p>
+		<p> 수2 : <input type="number" name="s2" required> </p>
+		<p> 연산자 :
+			<input type="radio" name="op" value="+" checked> +
+			<input type="radio" name="op" value="-" > -
+			<input type="radio" name="op" value="*" > *
+			<input type="radio" name="op" value="/" > /
+		</p>
+		<input type="submit" value="결과보기">
+	</fieldset>
+</form>
+
+<form method="post">
+	<fieldset>
+		<legend> 계산기 </legend>
+		<p> 수1 : <input type="number" name="s1"> </p>
+		<p> 수2 : <input type="number" name="s2"> </p>
+		<p> 연산자 :
+			<input type="radio" name="op" value="+"> +
+			<input type="radio" name="op" value="-"> -
+			<input type="radio" name="op" value="*"> *
+			<input type="radio" name="op" value="/"> /
+		</p>
+		<input type="button" value="결과보기" onclick="send_go(this.form)">
+	</fieldset>
+</form>
+
+
+</body>
+</html>
